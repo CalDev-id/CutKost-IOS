@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct KosKitaApp: App {
+    
+    @StateObject var recipeViewModel: RecipeViewModel = RecipeViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView{
+                MainView()
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .environmentObject(recipeViewModel)
         }
     }
 }
