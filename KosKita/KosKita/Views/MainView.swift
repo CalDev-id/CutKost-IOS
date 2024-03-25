@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var recipeViewModel: RecipeViewModel
-    
+
     var body: some View {
         ScrollView {
             VStack {
@@ -25,10 +25,28 @@ struct MainView: View {
                             }
                         }
                     }
+                    if let firstItem = recipeViewModel.items.first {
+                        RecipeList(item: firstItem)
+                            .padding()
+                    } else {
+                        Text("kosong")
+                    }
+                    if recipeViewModel.items.count >= 3 {
+                        let thirdItem = recipeViewModel.items[1]
+                        RecipeList(item: thirdItem)
+                            .padding()
+                    } else {
+                        Text("kosong")
+                    }
+                }
+                Text("Bookmark")
+                ForEach(recipeViewModel.items) { item in
+                    RecipeList(item: item)
                 }
             }
             .padding()
         }
+
     }
 }
 

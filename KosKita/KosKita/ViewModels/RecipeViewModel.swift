@@ -19,26 +19,29 @@ class RecipeViewModel: ObservableObject {
 
     init(){
         getItems()
-        if !hasBeenCalled {
-            guard !hasBeenCalled else { return }
-            // Code initialization di sini
+//        if !hasBeenCalled {
+//            guard !hasBeenCalled else { return }
+//            // Code initialization di sini
+//            initRecipe()
+//            hasBeenCalled = true
+//        }
+        if items.isEmpty {
             initRecipe()
-            hasBeenCalled = true
         }
-
     }
     
     func initRecipe(){
         let newItems = [
             RecipeModel(title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false),
-            RecipeModel(title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false),
-            RecipeModel(title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false)
+            RecipeModel(title: "nasi goreng", image: "nasi", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false),
+            RecipeModel(title: "ayam goreng", image: "ayam", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false)
         ]
         
         items.append(contentsOf: newItems)
     }
     
     func getItems(){
+
         guard
             let data = UserDefaults.standard.data(forKey: itemsKey),
             let savedItems = try? JSONDecoder().decode([RecipeModel].self, from: data)
