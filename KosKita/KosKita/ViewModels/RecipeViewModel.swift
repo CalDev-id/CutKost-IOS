@@ -32,7 +32,7 @@ class RecipeViewModel: ObservableObject {
     
     func initRecipe(){
         let newItems = [
-            RecipeModel(title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false),
+            RecipeModel(title: "wagyu", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false),
             RecipeModel(title: "nasi goreng", image: "nasi", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false),
             RecipeModel(title: "ayam goreng", image: "ayam", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false)
         ]

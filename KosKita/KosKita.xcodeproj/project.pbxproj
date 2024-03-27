@@ -14,6 +14,8 @@
 		2E701F212BAFE08800EF65FA /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F202BAFE08800EF65FA /* RecipeViewModel.swift */; };
 		2E701F232BAFE65200EF65FA /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F222BAFE65200EF65FA /* RecipeList.swift */; };
 		2E701F252BAFE91E00EF65FA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F242BAFE91E00EF65FA /* MainView.swift */; };
+		2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F2D2BB3EAA400EF65FA /* DeckModel.swift */; };
+		2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F2F2BB3ECD500EF65FA /* DeckViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		2E701F202BAFE08800EF65FA /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		2E701F222BAFE65200EF65FA /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		2E701F242BAFE91E00EF65FA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2E701F2D2BB3EAA400EF65FA /* DeckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckModel.swift; sourceTree = "<group>"; };
+		2E701F2F2BB3ECD500EF65FA /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				2E701F1E2BAFDE4C00EF65FA /* RecipeModel.swift */,
+				2E701F2D2BB3EAA400EF65FA /* DeckModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				2E701F202BAFE08800EF65FA /* RecipeViewModel.swift */,
+				2E701F2F2BB3ECD500EF65FA /* DeckViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -182,6 +188,8 @@
 				2E701F252BAFE91E00EF65FA /* MainView.swift in Sources */,
 				2E701F232BAFE65200EF65FA /* RecipeList.swift in Sources */,
 				2E701F0D2BAFDCE400EF65FA /* KosKitaApp.swift in Sources */,
+				2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */,
+				2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */,
 				2E701F1F2BAFDE4C00EF65FA /* RecipeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

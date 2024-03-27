@@ -12,6 +12,7 @@ struct RecipeList: View {
     
     var body: some View {
         HStack{
+            Text(item.id)
             Image(item.image).resizable().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
             Text(item.title)
             Spacer()
