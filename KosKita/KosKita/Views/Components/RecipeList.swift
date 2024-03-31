@@ -12,7 +12,7 @@ struct RecipeList: View {
     
     var body: some View {
         HStack{
-            Text(item.id)
+            Text(String(item.id))
             Image(item.image).resizable().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
             Text(item.title)
             Spacer()
@@ -27,5 +27,5 @@ struct RecipeList: View {
 }
 
 #Preview {
-    RecipeList(item: RecipeModel(title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false))
+    RecipeList(item: RecipeModel(id: 1, title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false))
 }

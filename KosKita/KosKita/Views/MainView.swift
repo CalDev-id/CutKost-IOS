@@ -9,7 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var recipeViewModel: RecipeViewModel
+    @EnvironmentObject var deckViewModel: DeckViewModel
     @State var textFieldText: String = ""
+    
+    @State var item1: Int = 0
+    @State var item2: Int = 0
+    @State var item3: Int = 0
 
     var body: some View {
         ScrollView {
@@ -30,6 +35,79 @@ struct MainView: View {
                         RecipeList(item: item)
                     }
                 }
+                Text("deck").padding(8).background(.black).foregroundColor(.white).cornerRadius(20)
+                //dummy deck
+                HStack{
+                    VStack{
+                        if item1 == 0 {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                        } else {
+                            ForEach(recipeViewModel.items.filter { $0.id == item1 }) { filteredItem in
+                                VStack {
+                                    Image(filteredItem.image)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text(filteredItem.title)
+                                }
+                            }
+                        }
+                    }
+                    VStack{
+                        if item2 == 0 {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                        } else {
+                            ForEach(recipeViewModel.items.filter { $0.id == item2 }) { filteredItem in
+                                VStack {
+                                    Image(filteredItem.image)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text(filteredItem.title)
+                                }
+                            }
+                        }
+                    }
+                    VStack{
+                        if item3 == 0 {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                        } else {
+                            ForEach(recipeViewModel.items.filter { $0.id == item3 }) { filteredItem in
+                                VStack {
+                                    Image(filteredItem.image)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text(filteredItem.title)
+                                }
+                            }
+                        }
+                    }
+                }
+                .background(Color.blue.opacity(0.4))
+                .font(.title2)
+                .padding(.vertical, 8)
+                .listRowBackground(Color.green.opacity(0.0))
+                //end dummy
+//                if let lastItem = deckViewModel.items.last {
+//                    DeckList(deck: lastItem)
+//                        .padding()
+//                } else {
+//                    Text("kosong")
+//                }
+                Button(action: {
+                    deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
+                }) {
+                    Text("Save Deck")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .padding()
                 Text("daftar menu").padding(8).background(.black).foregroundColor(.white).cornerRadius(20)
                 if recipeViewModel.items.isEmpty {
                     Text("kosong")
@@ -39,6 +117,15 @@ struct MainView: View {
                         .onTapGesture {
                             withAnimation(.linear){
                                 recipeViewModel.addBookmark(item: item)
+                                if item1 == 0 {
+                                    item1 = item.id
+                                }
+                                else if item2 == 0 {
+                                    item2 = item.id
+                                }
+                                else if item3 == 0 {
+                                    item3 = item.id
+                                }
                             }
                         }
                     }
@@ -63,6 +150,14 @@ struct MainView: View {
                 ForEach(recipeViewModel.items.filter({$0.isBookmarked})) { item in
                     RecipeList(item: item)
                 }
+                Text("daftar deck").padding(8).background(.black).foregroundColor(.white).cornerRadius(20)
+                if recipeViewModel.items.isEmpty {
+                    Text("kosong")
+                } else {
+                    ForEach(deckViewModel.items) { item in
+                        DeckList(deck: item)
+                    }
+                }
             }
             .padding()
         }
@@ -73,5 +168,5 @@ struct MainView: View {
 #Preview {
     NavigationView{
         MainView()
-    }.environmentObject(RecipeViewModel())
+    }.environmentObject(RecipeViewModel()).environmentObject(DeckViewModel())
 }

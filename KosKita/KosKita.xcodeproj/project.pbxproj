@@ -16,6 +16,9 @@
 		2E701F252BAFE91E00EF65FA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F242BAFE91E00EF65FA /* MainView.swift */; };
 		2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F2D2BB3EAA400EF65FA /* DeckModel.swift */; };
 		2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F2F2BB3ECD500EF65FA /* DeckViewModel.swift */; };
+		2E701F322BB3F06D00EF65FA /* DeckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F312BB3F06D00EF65FA /* DeckList.swift */; };
+		2E701F342BB90F7A00EF65FA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F332BB90F7A00EF65FA /* HomeView.swift */; };
+		2E701F362BB9193500EF65FA /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F352BB9193500EF65FA /* OnboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		2E701F242BAFE91E00EF65FA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2E701F2D2BB3EAA400EF65FA /* DeckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckModel.swift; sourceTree = "<group>"; };
 		2E701F2F2BB3ECD500EF65FA /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
+		2E701F312BB3F06D00EF65FA /* DeckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckList.swift; sourceTree = "<group>"; };
+		2E701F332BB90F7A00EF65FA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2E701F352BB9193500EF65FA /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,8 @@
 			children = (
 				2E701F1D2BAFDDE200EF65FA /* Components */,
 				2E701F242BAFE91E00EF65FA /* MainView.swift */,
+				2E701F332BB90F7A00EF65FA /* HomeView.swift */,
+				2E701F352BB9193500EF65FA /* OnboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2E701F222BAFE65200EF65FA /* RecipeList.swift */,
+				2E701F312BB3F06D00EF65FA /* DeckList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -184,10 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E701F342BB90F7A00EF65FA /* HomeView.swift in Sources */,
 				2E701F212BAFE08800EF65FA /* RecipeViewModel.swift in Sources */,
 				2E701F252BAFE91E00EF65FA /* MainView.swift in Sources */,
 				2E701F232BAFE65200EF65FA /* RecipeList.swift in Sources */,
 				2E701F0D2BAFDCE400EF65FA /* KosKitaApp.swift in Sources */,
+				2E701F322BB3F06D00EF65FA /* DeckList.swift in Sources */,
+				2E701F362BB9193500EF65FA /* OnboardView.swift in Sources */,
 				2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */,
 				2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */,
 				2E701F1F2BAFDE4C00EF65FA /* RecipeModel.swift in Sources */,

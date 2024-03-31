@@ -11,14 +11,16 @@ import SwiftUI
 struct KosKitaApp: App {
     
     @StateObject var recipeViewModel: RecipeViewModel = RecipeViewModel()
+    @StateObject var deckViewModel: DeckViewModel = DeckViewModel()
     
     var body: some Scene {
         WindowGroup {
             NavigationView{
-                MainView()
+                OnboardView()
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(recipeViewModel)
+            .environmentObject(deckViewModel)
         }
     }
 }
