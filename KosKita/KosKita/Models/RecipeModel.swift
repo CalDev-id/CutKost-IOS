@@ -10,36 +10,29 @@ import Foundation
 struct RecipeModel: Identifiable, Codable {
     let id: Int
     let title: String
+    let description: String
     let image: String
-    let ingridients: [String]
+    let price: Int
+    let time : String
+    let ingredients: [String]
     let video: String
-    let tutorial: String
+    let step: [String]
     let isBookmarked: Bool
     
-    init(id: Int, title: String, image: String, ingridients: [String], video: String, tutorial: String, isBookmarked: Bool){
+    init(id: Int, title: String, description: String, image: String, price: Int, time: String, ingredients: [String], video: String, step: [String], isBookmarked: Bool){
         self.id = id
         self.title = title
+        self.description = description
         self.image = image
-        self.ingridients = ingridients
+        self.price = price
+        self.time = time
+        self.ingredients = ingredients
         self.video = video
-        self.tutorial = tutorial
+        self.step = step
         self.isBookmarked = isBookmarked
     }
     
     func addBookmark() -> RecipeModel {
-        return RecipeModel(id: id, title: title, image: image, ingridients: ingridients, video: video, tutorial: tutorial, isBookmarked: !isBookmarked)
+        return RecipeModel(id: id, title: title, description: description, image: image, price: price, time: time, ingredients: ingredients, video: video, step: step, isBookmarked: !isBookmarked)
     }
 }
-
-// Dummy data
-
-//extension RecipeModel {
-//    static func dummyData() -> [RecipeModel] {
-//        return [
-//            RecipeModel(title: "Spaghetti Carbonara", image: "spaghetti_carbonara", ingridients: ["Spaghetti", "Egg", "Bacon", "Parmesan Cheese", "Black Pepper", "Salt"], video: "https://www.youtube.com/watch?v=nT8gYLO6kZE", tutorial: "Follow the video tutorial for instructions.", isBookmarked: false),
-//            RecipeModel(title: "Chicken Alfredo", image: "chicken_alfredo", ingridients: ["Chicken Breast", "Fettuccine Pasta", "Heavy Cream", "Butter", "Garlic", "Parmesan Cheese", "Salt", "Black Pepper"], video: "https://www.youtube.com/watch?v=3iHBXKFSTpQ", tutorial: "Follow the video tutorial for instructions.", isBookmarked: false),
-//            RecipeModel(title: "Vegetable Stir-Fry", image: "vegetable_stir_fry", ingridients: ["Broccoli", "Carrots", "Bell Peppers", "Snow Peas", "Garlic", "Soy Sauce", "Vegetable Oil", "Sesame Oil"], video: "https://www.youtube.com/watch?v=yydK9nJsAsI", tutorial: "Follow the video tutorial for instructions.", isBookmarked: false)
-//            // Add more dummy data as needed
-//        ]
-//    }
-//}

@@ -10,42 +10,12 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var recipeViewModel: RecipeViewModel
-    @EnvironmentObject var deckViewModel: DeckViewModel
-    @State var textFieldText: String = ""
-    
-    @State var item1: Int = 1
-    @State var item2: Int = 0
-    @State var item3: Int = 0
-    
+    @EnvironmentObject var deckViewModel: DeckViewModel    
     var body: some View {
         ScrollView{
-            VStack{
-                HStack{
-                    Text("Your daily budget").font(.system(size: 20))
-                    Spacer()
-                    Text("Press to change >").foregroundColor(.secondary)
-                }
-                TextField("", text: $textFieldText)
-                                    .padding(.horizontal)
-                                    .frame(height: 50)
-                                    .foregroundColor(.white)
-                                    .overlay(
-                                        Text("Rp. 0")
-                                            .foregroundColor(Color.white) // Ubah warna teks "Rp. 0"
-                                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                                            .fontWeight(.semibold)
-                                            .padding(.leading, 8) // Atur padding jika diperlukan
-                                            .opacity(textFieldText.isEmpty ? 1 : 0) // Sembunyikan "Rp. 0" jika ada teks yang dimasukkan
-                                            .multilineTextAlignment(.leading).frame(maxWidth: .infinity, alignment: .leading)
-                                    )
-                                    
-            }.padding().background(.secondary.opacity(0.7)).cornerRadius(15)
             PersonalDeck()
-            if(textFieldText == ""){
-                Text("No data available!").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                Text("Input your daily budget first").foregroundColor(.secondary)
-            }
-        }.padding()
+
+        }.navigationBarBackButtonHidden(true).padding()
     }
 }
 
@@ -56,79 +26,205 @@ struct HomeView: View {
 }
 
 struct PersonalDeck: View {
+    let gridItems = Array(repeating: GridItem(), count: 2) // 2 kolom
+    
     @EnvironmentObject var recipeViewModel: RecipeViewModel
     @EnvironmentObject var deckViewModel: DeckViewModel
     @State var textFieldText: String = ""
     
-    @State var item1: Int = 1
+    @State var item1: Int = 0
+    @State var priceItem1: Int = 0
     @State var item2: Int = 0
+    @State var priceItem2: Int = 0
     @State var item3: Int = 0
+    @State var priceItem3: Int = 0
     
+    @State var priceAmount: Int = 0
+    
+    @State var notEnough: Bool = false
+
     var body: some View {
-        VStack {
-            HStack{
-                Text("Your personal deck").font(.system(size: 20))
-                Spacer()
-                
-                HStack{
-                    Image(systemName: "bookmark")
-                    Text("Save")
-                }.padding(10).padding(.horizontal).background(.black).foregroundColor(.white).cornerRadius(20).onTapGesture {
-                    deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
-                }
+        Group {
+            
+            if let enteredPrice = Int(textFieldText), priceAmount > enteredPrice {
+                notEnough = true
             }
-            HStack{
+
+            VStack {
                 VStack{
-                    if item1 == 0 {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                    } else {
-                        ForEach(recipeViewModel.items.filter { $0.id == item1 }) { filteredItem in
-                            VStack {
-                                Image(filteredItem.image)
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text(filteredItem.title)
+                    HStack {
+                        Text("").frame(height: 60).leftBorder(width: 15, color: .purple)
+                        VStack {
+                            HStack{
+                                Text("Your Budget is").font(.system(size: 20)).padding(.leading, 5)
+                                Spacer()
+                                Text(String(priceAmount))
                             }
+                            HStack {
+                                Text("Rp.")
+                                    .foregroundColor(Color.black)
+                                    .font(.system(size: 40))
+                                    .fontWeight(.bold)
+                                    .padding(.leading, 8)
+                                TextField("0", text: $textFieldText)
+                                                        .padding(.trailing)
+                                                        .frame(height: 50)
+                                                        .foregroundColor(.black)
+                                                        .keyboardType(.numberPad)
+                                                        .font(.system(size: 40))
+                                                    .bold()
+                            }
+
+                            }.padding()
                         }
                     }
-                }
-                VStack{
-                    if item2 == 0 {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                    } else {
-                        ForEach(recipeViewModel.items.filter { $0.id == item2 }) { filteredItem in
-                            VStack {
-                                Image(filteredItem.image)
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text(filteredItem.title)
+
+                    VStack {
+                        HStack{
+                            Text("Add to your deck").fontWeight(.semibold).font(.system(size: 17))
+                            Spacer()
+                            
+                            HStack{
+                                Image(systemName: "bookmark")
+                                Text("Save")
+                            }.padding(6).padding(.horizontal, 8).background(.purple).foregroundColor(.white).cornerRadius(20).onTapGesture {
+                                deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
                             }
                         }
-                    }
-                }
-                VStack{
-                    if item3 == 0 {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                    } else {
-                        ForEach(recipeViewModel.items.filter { $0.id == item3 }) { filteredItem in
-                            VStack {
-                                Image(filteredItem.image)
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text(filteredItem.title)
+                        HStack{
+                            VStack{
+                                if item1 == 0 {
+                                    Group {
+                                        Image(systemName: "plus")
+                                            .resizable().frame(width: 25, height: 25)
+                                    }.frame(width: 105, height: 125).foregroundColor(.purple).background(.secondary.opacity(0.2)).cornerRadius(20)
+                                } else {
+                                    ForEach(recipeViewModel.items.filter { $0.id == item1 }) { filteredItem in
+                                        VStack {
+                                            URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
+//                                            Text(filteredItem.title)
+                                        }
+                                    }
+                                }
+                            }.onTapGesture{
+                                item1 = 0
+                                priceAmount = priceAmount - priceItem1
+                            }
+                            VStack{
+                                if item2 == 0 {
+                                    Group {
+                                        Image(systemName: "plus")
+                                            .resizable().frame(width: 25, height: 25)
+                                    }.frame(width: 105, height: 125).foregroundColor(.purple).background(.secondary.opacity(0.2)).cornerRadius(20)
+                                } else {
+                                    ForEach(recipeViewModel.items.filter { $0.id == item2 }) { filteredItem in
+                                        VStack {
+                                            URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
+//                                            Text(filteredItem.title)
+                                        }
+                                    }
+                                }
+                            }.onTapGesture{
+                                item2 = 0
+                                priceAmount = priceAmount - priceItem2
+                            }
+                            VStack{
+                                if item3 == 0 {
+                                    Group {
+                                        Image(systemName: "plus")
+                                            .resizable().frame(width: 25, height: 25)
+                                    }.frame(width: 105, height: 125).foregroundColor(.purple).background(.secondary.opacity(0.2)).cornerRadius(20)
+                                } else {
+                                    ForEach(recipeViewModel.items.filter { $0.id == item3 }) { filteredItem in
+                                        VStack {
+                                            URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
+//                                            Text(filteredItem.title)
+                                        }
+                                    }
+                                }
+                            }.onTapGesture{
+                                item3 = 0
+                                priceAmount = priceAmount - priceItem3
                             }
                         }
-                    }
-                }
+                    }.padding().frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                        .background(.white).cornerRadius(15).padding(.bottom, 5).padding(.horizontal, 5)
+                }.background(Blur(style: .systemThinMaterial).background(Color.black.opacity(0.1)))
+        }.cornerRadius(20).padding()
+            .background(Image("bulat"))
+            
+            if(textFieldText == ""){
+                Text("No data available!").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.secondary)
+                Text("Input your daily budget first").foregroundColor(.secondary)
+            }else{
+                VStack {
+                    HStack{
+                        Text("Recommended").bold().font(.title3)
+                        Spacer()
+                    }.padding(.horizontal, 20)
+                    LazyVGrid(columns: gridItems, spacing: 20) {
+                            if let enteredPrice = Int(textFieldText) {
+                                ForEach(recipeViewModel.items.filter { $0.price <= enteredPrice }) { item in
+                                    RecipeList(item: item)
+                                        .onTapGesture {
+                                            withAnimation(.linear) {
+                                                recipeViewModel.addBookmark(item: item)
+                                                if item1 == 0 {
+                                                    item1 = item.id
+                                                    priceItem1 = item.price
+                                                    priceAmount = priceAmount + priceItem1
+                                                } else if item2 == 0 {
+                                                    item2 = item.id
+                                                    priceItem2 = item.price
+                                                    priceAmount = priceAmount + priceItem2
+                                                } else if item3 == 0 {
+                                                    item3 = item.id
+                                                    priceItem3 = item.price
+                                                    priceAmount = priceAmount +  priceItem3
+
+                                                }
+                                                
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                    .padding(.horizontal)
+                }.background(.thinMaterial)
             }
-        }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            .padding(.vertical, 8)
-            .padding().background(.secondary.opacity(0.7)).cornerRadius(15)
+
+        }
+    }
+    
+    // Blur View
+    struct Blur: UIViewRepresentable {
+        let style: UIBlurEffect.Style
+        
+        func makeUIView(context: Context) -> UIVisualEffectView {
+            return UIVisualEffectView(effect: UIBlurEffect(style: style))
+        }
+        
+        func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
+    }
+
+struct LeftBorder: ViewModifier {
+    var width: CGFloat
+    var color: Color
+
+    func body(content: Content) -> some View {
+        content
+            .overlay(
+                Rectangle()
+                    .frame(width: width, height: nil)
+                    .foregroundColor(color)
+                    .edgesIgnoringSafeArea(.vertical)
+                    .offset(x: 0, y: 0)
+            )
+    }
+}
+
+extension View {
+    func leftBorder(width: CGFloat, color: Color) -> some View {
+        self.modifier(LeftBorder(width: width, color: color))
     }
 }

@@ -11,21 +11,29 @@ struct RecipeList: View {
     let item: RecipeModel
     
     var body: some View {
-        HStack{
-            Text(String(item.id))
-            Image(item.image).resizable().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-            Text(item.title)
-            Spacer()
-            Image(systemName: item.isBookmarked ? "checkmark.circle" : "circle")
-                .foregroundColor(item.isBookmarked ? .green : .red)
+        VStack{
+            URLImageView(url: item.image).frame(width: 178, height: 120).cornerRadius(20)
+            HStack{
+                VStack(alignment: .leading){
+                    HStack {
+                        Text(item.title).font(.system(size: 18)).bold()
+                        Image(systemName: item.isBookmarked ? "bookmark.fill" : "bookmark")
+                            .foregroundColor(item.isBookmarked ? .orange : .orange)
+                    }
+                    HStack{
+                        Text("Rp. \(item.price)").font(.system(size: 10)).foregroundColor(.white).padding(5).fontWeight(.semibold).background(.orange).cornerRadius(8)
+                        Text(item.time).font(.system(size: 10)).foregroundColor(.orange)
+                    }
+                }
+            }.padding(10)
         }
         .font(.title2)
-        .padding(.vertical, 8)
-        .background(Color.red.opacity(0.0))
-        .listRowBackground(Color.green.opacity(0.0))
+        .background(.white)
+        .cornerRadius(20)
     }
 }
 
 #Preview {
-    RecipeList(item: RecipeModel(id: 1, title: "Wagyu A5", image: "steak", ingridients: ["daging", "rosemary"], video: "video", tutorial: "tutor", isBookmarked: false))
+    RecipeList(item: RecipeModel(id: 1, title: "Nasi Goreng Ayam", description: "Nasi goreng ayam dengan cita rasa khas Indonesia.", image: "https://drive.google.com/uc?export=download&id=16gZoP8XjCSAx2M-l7hT3JJon9Cvgp5wL", price: 15000, time: "10 menit", ingredients: ["Nasi putih", "Daging ayam", "Bawang merah", "Bawang putih", "Kecap manis", "Telur", "Minyak goreng"] , video: "https://www.youtube.com/watch?v=1t75_f8DUJE", step: ["Tumis bawang merah dan bawang putih hingga harum.", "Masukkan daging ayam yang telah dipotong kecil, aduk hingga matang.", "Tambahkan nasi putih dan kecap manis, aduk rata.", "Buat telur mata sapi di sisi wajan yang berbeda.", "Campur telur dengan nasi goreng, aduk rata hingga matang.", "Sajikan nasi goreng ayam hangat."] , isBookmarked: false))
 }
+
