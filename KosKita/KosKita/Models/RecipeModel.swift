@@ -18,8 +18,9 @@ struct RecipeModel: Identifiable, Codable {
     let video: String
     let step: [String]
     let isBookmarked: Bool
+    let isDeck: Bool
     
-    init(id: Int, title: String, description: String, image: String, price: Int, time: Int, ingredients: [String], video: String, step: [String], isBookmarked: Bool){
+    init(id: Int, title: String, description: String, image: String, price: Int, time: Int, ingredients: [String], video: String, step: [String], isBookmarked: Bool, isDeck: Bool){
         self.id = id
         self.title = title
         self.description = description
@@ -30,9 +31,16 @@ struct RecipeModel: Identifiable, Codable {
         self.video = video
         self.step = step
         self.isBookmarked = isBookmarked
+        self.isDeck = isDeck
     }
     
     func addBookmark() -> RecipeModel {
-        return RecipeModel(id: id, title: title, description: description, image: image, price: price, time: time, ingredients: ingredients, video: video, step: step, isBookmarked: !isBookmarked)
+        return RecipeModel(id: id, title: title, description: description, image: image, price: price, time: time, ingredients: ingredients, video: video, step: step, isBookmarked: !isBookmarked, isDeck: isDeck)
+    }
+    func addDeck() -> RecipeModel {
+        return RecipeModel(id: id, title: title, description: description, image: image, price: price, time: time, ingredients: ingredients, video: video, step: step, isBookmarked: isBookmarked, isDeck: true)
+    }
+    func delDeck() -> RecipeModel {
+        return RecipeModel(id: id, title: title, description: description, image: image, price: price, time: time, ingredients: ingredients, video: video, step: step, isBookmarked: isBookmarked, isDeck: false)
     }
 }

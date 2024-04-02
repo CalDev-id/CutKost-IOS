@@ -42,7 +42,7 @@ struct PersonalDeck: View {
     @State var priceAmount: Int = 0
     
     @State var notEnough: Bool = false
-    
+    @State var isDeck: Bool = false
     @State var alertTitle: String = ""
     @State var showAlert: Bool = false
     var body: some View {
@@ -88,7 +88,9 @@ struct PersonalDeck: View {
                                 Image(systemName: "bookmark")
                                 Text("Save")
                             }.padding(6).padding(.horizontal, 8).background(.blueAsset).foregroundColor(.white).cornerRadius(20).onTapGesture {
-                                deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
+                                if item1 != 0 {
+                                    deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
+                                }
                             }
                         }
                         HStack{
@@ -103,12 +105,15 @@ struct PersonalDeck: View {
                                         VStack {
                                             URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
 //                                            Text(filteredItem.title)
+                                        }.onTapGesture{
+                                            item1 = 0
+                                            priceAmount = priceAmount - priceItem1
+                                            isDeck = false
+                                            recipeViewModel.delDeck(item: filteredItem)
+                                            priceItem1 = 0
                                         }
                                     }
                                 }
-                            }.onTapGesture{
-                                item1 = 0
-                                priceAmount = priceAmount - priceItem1
                             }
                             VStack{
                                 if item2 == 0 {
@@ -121,12 +126,15 @@ struct PersonalDeck: View {
                                         VStack {
                                             URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
 //                                            Text(filteredItem.title)
+                                        }.onTapGesture{
+                                            item2 = 0
+                                            priceAmount = priceAmount - priceItem2
+                                            isDeck = false
+                                            recipeViewModel.delDeck(item: filteredItem)
+                                            priceItem1 = 0
                                         }
                                     }
                                 }
-                            }.onTapGesture{
-                                item2 = 0
-                                priceAmount = priceAmount - priceItem2
                             }
                             VStack{
                                 if item3 == 0 {
@@ -139,12 +147,15 @@ struct PersonalDeck: View {
                                         VStack {
                                             URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
 //                                            Text(filteredItem.title)
+                                        }.onTapGesture{
+                                            item3 = 0
+                                            priceAmount = priceAmount - priceItem3
+                                            isDeck = false
+                                            recipeViewModel.delDeck(item: filteredItem)
+                                            priceItem1 = 0
                                         }
                                     }
                                 }
-                            }.onTapGesture{
-                                item3 = 0
-                                priceAmount = priceAmount - priceItem3
                             }
                         }
                     }.padding().frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
@@ -157,7 +168,13 @@ struct PersonalDeck: View {
                 Text("No data available!").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.secondary)
                 Text("Input your daily budget first").foregroundColor(.secondary)
                 Image("noData").padding()
-            }else{
+            }
+        if let budget = Int(textFieldText), budget < 5000{
+            Text("No data available!").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.secondary)
+            Text("Input your daily budget first").foregroundColor(.secondary)
+            Image("noData").padding()
+        }
+        if let budget = Int(textFieldText), budget > 5000{
                 Group {
                     VStack {
                         HStack{
@@ -167,27 +184,30 @@ struct PersonalDeck: View {
                         LazyVGrid(columns: gridItems, spacing: 20) {
                                 if let enteredPrice = Int(textFieldText) {
                                     ForEach(recipeViewModel.items.filter { $0.price <= enteredPrice }) { item in
-                                        RecipeList(item: item)
+                                        RecipeList(isDeck: isDeck, item: item)
                                             .onTapGesture {
                                                 withAnimation(.linear) {
-                                                    recipeViewModel.addBookmark(item: item)
+                                                    recipeViewModel.addDeck(item: item)
                                                     if item1 == 0 {
                                                         if maxAmount(){
                                                             item1 = item.id
                                                             priceItem1 = item.price
                                                             priceAmount = priceAmount + priceItem1
+                                                            isDeck = true
                                                         }
                                                     } else if item2 == 0 {
                                                         if maxAmount(){
                                                             item2 = item.id
                                                             priceItem2 = item.price
                                                             priceAmount = priceAmount + priceItem2
+                                                            isDeck = true
                                                         }
                                                     } else if item3 == 0 {
                                                         if maxAmount(){
                                                             item3 = item.id
                                                             priceItem3 = item.price
                                                             priceAmount = priceAmount +  priceItem3
+                                                            isDeck = true
                                                         }
 
                                                     }

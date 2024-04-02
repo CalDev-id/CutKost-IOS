@@ -36,9 +36,9 @@ struct ContentView: View {
               case .house:
                   return AnyView(HomeView())
               case .magnifyingglass:
-                  return AnyView(Text("House View").font(.title).tag(tab))
+                  return AnyView(OnboardView())
               case .bookmark:
-                  return AnyView(Text("House View").font(.title).tag(tab))
+                  return AnyView(bookmarkDummy())
               }
           }
       }

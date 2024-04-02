@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var recipeViewModel: RecipeViewModel
     @EnvironmentObject var deckViewModel: DeckViewModel
     @State var textFieldText: String = ""
@@ -15,6 +16,8 @@ struct MainView: View {
     @State var item1: Int = 0
     @State var item2: Int = 0
     @State var item3: Int = 0
+    @State var isDeck: Bool = false
+
 
     var body: some View {
         ScrollView {
@@ -32,7 +35,7 @@ struct MainView: View {
                     Text("search kosong")
                 }else{
                     ForEach(recipeViewModel.items.filter({$0.title.lowercased() == textFieldText.lowercased()})) { item in
-                        RecipeList(item: item)
+                        RecipeList(isDeck: isDeck, item: item)
                     }
                 }
                 Text("deck").padding(8).background(.black).foregroundColor(.white).cornerRadius(20)
@@ -113,7 +116,7 @@ struct MainView: View {
                     Text("kosong")
                 } else {
                     ForEach(recipeViewModel.items) { item in
-                        RecipeList(item: item)
+                        RecipeList(isDeck: isDeck,item: item)
                         .onTapGesture {
                             withAnimation(.linear){
                                 recipeViewModel.addBookmark(item: item)
@@ -148,7 +151,7 @@ struct MainView: View {
                     Text("bookmark kosong")
                 }
                 ForEach(recipeViewModel.items.filter({$0.isBookmarked})) { item in
-                    RecipeList(item: item)
+                    RecipeList(isDeck: isDeck,item: item)
                 }
                 Text("daftar deck").padding(8).background(.black).foregroundColor(.white).cornerRadius(20)
                 if recipeViewModel.items.isEmpty {
@@ -160,7 +163,7 @@ struct MainView: View {
                 }
             }
             .padding()
-        }
+        }.navigationBarBackButtonHidden(true)
 
     }
 }
