@@ -9,7 +9,7 @@ import SwiftUI
 
 enum Tab: String, CaseIterable {
     case house
-    case magnifyingglass
+    case book
     case bookmark
 }
 
@@ -22,7 +22,7 @@ struct CustomTabBar: View {
         switch selectedTab {
         case .house:
             return .white
-        case .magnifyingglass:
+        case .book:
             return .white
         case .bookmark:
             return .white
@@ -33,7 +33,7 @@ struct CustomTabBar: View {
         switch selectedTab {
         case .house:
             return "Home"
-        case .magnifyingglass:
+        case .book:
             return "Discover"
         case .bookmark:
             return "Bookmark"
@@ -44,7 +44,7 @@ struct CustomTabBar: View {
         switch selectedTab {
         case .house:
             return "home"
-        case .magnifyingglass:
+        case .book:
             return "lib"
         case .bookmark:
             return "saveoff"
@@ -55,7 +55,7 @@ struct CustomTabBar: View {
         switch selectedTab {
         case .house:
             return "homeoff"
-        case .magnifyingglass:
+        case .book:
             return "liboff"
         case .bookmark:
             return "saveoff"
@@ -84,7 +84,7 @@ struct CustomTabBar: View {
                     Spacer()
                 }
             }
-            .frame(width: nil, height: 60)
+            .frame(width: 300, height: 60)
             .background(.white)
             .cornerRadius(20)
             .padding()

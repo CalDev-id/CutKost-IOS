@@ -35,7 +35,7 @@ struct ContentView: View {
               switch tab {
               case .house:
                   return AnyView(HomeView())
-              case .magnifyingglass:
+              case .book:
                   return AnyView(OnboardView())
               case .bookmark:
                   return AnyView(bookmarkDummy())
@@ -44,5 +44,7 @@ struct ContentView: View {
       }
 
 #Preview {
-    ContentView().previewInterfaceOrientation(.portrait)
+    NavigationView{
+        ContentView().previewInterfaceOrientation(.portrait)
+    }.environmentObject(RecipeViewModel()).environmentObject(DeckViewModel())
 }
