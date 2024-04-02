@@ -26,7 +26,7 @@ struct OnboardView: View {
                 Text("ipsummmmmmmmmmm")
                 
                 Text("-----").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold()
-                NavigationLink(destination: HomeView()){
+                NavigationLink(destination: ContentView()){
                     Text("Next").padding(.horizontal, 50).padding(.vertical, 7).foregroundColor(.orange).fontWeight(.semibold)
                         .background(
                             .white

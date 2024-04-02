@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var recipeViewModel: RecipeViewModel
     @EnvironmentObject var deckViewModel: DeckViewModel    
     var body: some View {
@@ -42,18 +42,18 @@ struct PersonalDeck: View {
     @State var priceAmount: Int = 0
     
     @State var notEnough: Bool = false
-
+    
+    @State var alertTitle: String = ""
+    @State var showAlert: Bool = false
     var body: some View {
         Group {
-            
-            if let enteredPrice = Int(textFieldText), priceAmount > enteredPrice {
-                notEnough = true
-            }
-
             VStack {
+//                if let enteredPrice = Int(textFieldText), priceAmount > enteredPrice {
+//                    notEnough = true
+//                }
                 VStack{
                     HStack {
-                        Text("").frame(height: 60).leftBorder(width: 15, color: .purple)
+                        Text("").frame(height: 60).leftBorder(width: 20, color: priceAmount > (Int(textFieldText) ?? 0) ? .red : .blueAsset)
                         VStack {
                             HStack{
                                 Text("Your Budget is").font(.system(size: 20)).padding(.leading, 5)
@@ -87,7 +87,7 @@ struct PersonalDeck: View {
                             HStack{
                                 Image(systemName: "bookmark")
                                 Text("Save")
-                            }.padding(6).padding(.horizontal, 8).background(.purple).foregroundColor(.white).cornerRadius(20).onTapGesture {
+                            }.padding(6).padding(.horizontal, 8).background(.blueAsset).foregroundColor(.white).cornerRadius(20).onTapGesture {
                                 deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
                             }
                         }
@@ -97,7 +97,7 @@ struct PersonalDeck: View {
                                     Group {
                                         Image(systemName: "plus")
                                             .resizable().frame(width: 25, height: 25)
-                                    }.frame(width: 105, height: 125).foregroundColor(.purple).background(.secondary.opacity(0.2)).cornerRadius(20)
+                                    }.frame(width: 105, height: 125).foregroundColor(.blueAsset).background(.secondary.opacity(0.2)).cornerRadius(20)
                                 } else {
                                     ForEach(recipeViewModel.items.filter { $0.id == item1 }) { filteredItem in
                                         VStack {
@@ -115,7 +115,7 @@ struct PersonalDeck: View {
                                     Group {
                                         Image(systemName: "plus")
                                             .resizable().frame(width: 25, height: 25)
-                                    }.frame(width: 105, height: 125).foregroundColor(.purple).background(.secondary.opacity(0.2)).cornerRadius(20)
+                                    }.frame(width: 105, height: 125).foregroundColor(.blueAsset).background(.secondary.opacity(0.2)).cornerRadius(20)
                                 } else {
                                     ForEach(recipeViewModel.items.filter { $0.id == item2 }) { filteredItem in
                                         VStack {
@@ -133,7 +133,7 @@ struct PersonalDeck: View {
                                     Group {
                                         Image(systemName: "plus")
                                             .resizable().frame(width: 25, height: 25)
-                                    }.frame(width: 105, height: 125).foregroundColor(.purple).background(.secondary.opacity(0.2)).cornerRadius(20)
+                                    }.frame(width: 105, height: 125).foregroundColor(.blueAsset).background(.secondary.opacity(0.2)).cornerRadius(20)
                                 } else {
                                     ForEach(recipeViewModel.items.filter { $0.id == item3 }) { filteredItem in
                                         VStack {
@@ -149,63 +149,83 @@ struct PersonalDeck: View {
                         }
                     }.padding().frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                         .background(.white).cornerRadius(15).padding(.bottom, 5).padding(.horizontal, 5)
-                }.background(Blur(style: .systemThinMaterial).background(Color.black.opacity(0.1)))
+            }.background(Blur(style: .systemThinMaterial).background(.secondary.opacity(0.2)))
         }.cornerRadius(20).padding()
             .background(Image("bulat"))
             
             if(textFieldText == ""){
                 Text("No data available!").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.secondary)
                 Text("Input your daily budget first").foregroundColor(.secondary)
+                Image("noData").padding()
             }else{
-                VStack {
-                    HStack{
-                        Text("Recommended").bold().font(.title3)
-                        Spacer()
-                    }.padding(.horizontal, 20)
-                    LazyVGrid(columns: gridItems, spacing: 20) {
-                            if let enteredPrice = Int(textFieldText) {
-                                ForEach(recipeViewModel.items.filter { $0.price <= enteredPrice }) { item in
-                                    RecipeList(item: item)
-                                        .onTapGesture {
-                                            withAnimation(.linear) {
-                                                recipeViewModel.addBookmark(item: item)
-                                                if item1 == 0 {
-                                                    item1 = item.id
-                                                    priceItem1 = item.price
-                                                    priceAmount = priceAmount + priceItem1
-                                                } else if item2 == 0 {
-                                                    item2 = item.id
-                                                    priceItem2 = item.price
-                                                    priceAmount = priceAmount + priceItem2
-                                                } else if item3 == 0 {
-                                                    item3 = item.id
-                                                    priceItem3 = item.price
-                                                    priceAmount = priceAmount +  priceItem3
+                Group {
+                    VStack {
+                        HStack{
+                            Text("Recommended").bold().font(.title3).padding(.top)
+                            Spacer()
+                        }.padding(.horizontal, 20)
+                        LazyVGrid(columns: gridItems, spacing: 20) {
+                                if let enteredPrice = Int(textFieldText) {
+                                    ForEach(recipeViewModel.items.filter { $0.price <= enteredPrice }) { item in
+                                        RecipeList(item: item)
+                                            .onTapGesture {
+                                                withAnimation(.linear) {
+                                                    recipeViewModel.addBookmark(item: item)
+                                                    if item1 == 0 {
+                                                        if maxAmount(){
+                                                            item1 = item.id
+                                                            priceItem1 = item.price
+                                                            priceAmount = priceAmount + priceItem1
+                                                        }
+                                                    } else if item2 == 0 {
+                                                        if maxAmount(){
+                                                            item2 = item.id
+                                                            priceItem2 = item.price
+                                                            priceAmount = priceAmount + priceItem2
+                                                        }
+                                                    } else if item3 == 0 {
+                                                        if maxAmount(){
+                                                            item3 = item.id
+                                                            priceItem3 = item.price
+                                                            priceAmount = priceAmount +  priceItem3
+                                                        }
 
+                                                    }
+                                                    
                                                 }
-                                                
                                             }
-                                        }
+                                    }
                                 }
                             }
-                        }
-                    .padding(.horizontal)
-                }.background(.thinMaterial)
+                        .padding(.horizontal, 10)
+                    }.background(Blur(style: .systemThinMaterial).background(.secondary.opacity(0.2))).alert(isPresented: $showAlert, content: getAlert).cornerRadius(24).padding(.horizontal)
+                }.background(Image("bgRecomen3"))
             }
 
         }
+    func maxAmount() -> Bool {
+        if priceAmount >= (Int(textFieldText) ?? 0) {
+            alertTitle = "Maximal Amount reached!"
+            showAlert.toggle()
+            return false
+        }
+        return true
+    }
+    func getAlert() -> Alert {
+        return Alert(title: Text(alertTitle))
+    }
+}
+    
+// Blur View
+struct Blur: UIViewRepresentable {
+    let style: UIBlurEffect.Style
+    
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        return UIVisualEffectView(effect: UIBlurEffect(style: style))
     }
     
-    // Blur View
-    struct Blur: UIViewRepresentable {
-        let style: UIBlurEffect.Style
-        
-        func makeUIView(context: Context) -> UIVisualEffectView {
-            return UIVisualEffectView(effect: UIBlurEffect(style: style))
-        }
-        
-        func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
-    }
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
+}
 
 struct LeftBorder: ViewModifier {
     var width: CGFloat

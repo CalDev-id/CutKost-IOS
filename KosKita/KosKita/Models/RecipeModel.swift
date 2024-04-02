@@ -13,13 +13,13 @@ struct RecipeModel: Identifiable, Codable {
     let description: String
     let image: String
     let price: Int
-    let time : String
+    let time : Int
     let ingredients: [String]
     let video: String
     let step: [String]
     let isBookmarked: Bool
     
-    init(id: Int, title: String, description: String, image: String, price: Int, time: String, ingredients: [String], video: String, step: [String], isBookmarked: Bool){
+    init(id: Int, title: String, description: String, image: String, price: Int, time: Int, ingredients: [String], video: String, step: [String], isBookmarked: Bool){
         self.id = id
         self.title = title
         self.description = description
