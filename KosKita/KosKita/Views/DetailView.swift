@@ -51,6 +51,16 @@ struct DetailView: View {
                                 ingredientsCheck = true
                             }
                         }
+                        Text("Bahan Bahan").bold().font(.system(size: 20)).opacity(0.7)
+                        ForEach(Array(filteredItem.step.enumerated()), id: \.offset) { index, step in
+                            HStack {
+                                Text("\(index + 1)")
+                                Text(step)
+                            }
+                            .padding()
+                            .foregroundColor(.secondary)
+                        }
+
                     }.padding(.horizontal, 22)
                 }
             }
