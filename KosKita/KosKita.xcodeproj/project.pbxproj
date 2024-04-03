@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052D81B92BBD408300C8BB26 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052D81B82BBD408300C8BB26 /* ExploreView.swift */; };
+		052D81BB2BBD40C500C8BB26 /* ExploreFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052D81BA2BBD40C500C8BB26 /* ExploreFilterView.swift */; };
+		052D81BF2BBD410200C8BB26 /* ExploreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052D81BE2BBD410200C8BB26 /* ExploreListView.swift */; };
 		2E701F0D2BAFDCE400EF65FA /* KosKitaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F0C2BAFDCE400EF65FA /* KosKitaApp.swift */; };
 		2E701F112BAFDCE600EF65FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E701F102BAFDCE600EF65FA /* Assets.xcassets */; };
 		2E701F142BAFDCE600EF65FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E701F132BAFDCE600EF65FA /* Preview Assets.xcassets */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052D81B82BBD408300C8BB26 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		052D81BA2BBD40C500C8BB26 /* ExploreFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFilterView.swift; sourceTree = "<group>"; };
+		052D81BE2BBD410200C8BB26 /* ExploreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreListView.swift; sourceTree = "<group>"; };
 		2E701F092BAFDCE400EF65FA /* KosKita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KosKita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E701F0C2BAFDCE400EF65FA /* KosKitaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KosKitaApp.swift; sourceTree = "<group>"; };
 		2E701F102BAFDCE600EF65FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 				2E701F1D2BAFDDE200EF65FA /* Components */,
 				2E701F242BAFE91E00EF65FA /* MainView.swift */,
 				2E701F332BB90F7A00EF65FA /* HomeView.swift */,
+				052D81B82BBD408300C8BB26 /* ExploreView.swift */,
 				2E7882492BBD228000C55DE6 /* DetailView.swift */,
 				2E701F392BBB87C100EF65FA /* ContentView.swift */,
 				2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */,
@@ -137,6 +144,8 @@
 				2E701F3B2BBB883E00EF65FA /* CustomTabBar.swift */,
 				2E7882472BBD224F00C55DE6 /* URLYoutubeView.swift */,
 				2E701F372BBA816100EF65FA /* URLImageView.swift */,
+				052D81BA2BBD40C500C8BB26 /* ExploreFilterView.swift */,
+				052D81BE2BBD410200C8BB26 /* ExploreListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -223,7 +232,10 @@
 				2E78824A2BBD228000C55DE6 /* DetailView.swift in Sources */,
 				2E701F362BB9193500EF65FA /* OnboardView.swift in Sources */,
 				2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */,
+				052D81BF2BBD410200C8BB26 /* ExploreListView.swift in Sources */,
+				052D81B92BBD408300C8BB26 /* ExploreView.swift in Sources */,
 				2E7882482BBD224F00C55DE6 /* URLYoutubeView.swift in Sources */,
+				052D81BB2BBD40C500C8BB26 /* ExploreFilterView.swift in Sources */,
 				2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */,
 				2E7882462BBBF6B800C55DE6 /* bookmarkDummy.swift in Sources */,
 				2E701F1F2BAFDE4C00EF65FA /* RecipeModel.swift in Sources */,

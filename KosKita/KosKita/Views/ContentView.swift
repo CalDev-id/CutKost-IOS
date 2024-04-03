@@ -36,7 +36,7 @@ struct ContentView: View {
               case .house:
                   return AnyView(HomeView())
               case .book:
-                  return AnyView(OnboardView())
+                  return AnyView(ExploreView())
               case .bookmark:
                   return AnyView(bookmarkDummy())
               }
