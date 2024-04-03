@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052D81B92BBD408300C8BB26 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052D81B82BBD408300C8BB26 /* ExploreView.swift */; };
 		052D81BB2BBD40C500C8BB26 /* ExploreFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052D81BA2BBD40C500C8BB26 /* ExploreFilterView.swift */; };
 		052D81BF2BBD410200C8BB26 /* ExploreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052D81BE2BBD410200C8BB26 /* ExploreListView.swift */; };
+		054EB46D2BBDCDBF00DCC398 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EB46C2BBDCDBF00DCC398 /* ExploreView.swift */; };
+		054EB46F2BBDD5EA00DCC398 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EB46E2BBDD5EA00DCC398 /* BookmarkView.swift */; };
+		054EB4712BBDDB5E00DCC398 /* SavedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EB4702BBDDB5E00DCC398 /* SavedRecipeView.swift */; };
+		054EB4732BBDDE0A00DCC398 /* LeftRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EB4722BBDDE0A00DCC398 /* LeftRadius.swift */; };
+		054EB4752BBDDEB600DCC398 /* RightRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EB4742BBDDEB600DCC398 /* RightRadius.swift */; };
+		054EB4772BBE0C6700DCC398 /* SavedDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EB4762BBE0C6700DCC398 /* SavedDeckView.swift */; };
 		2E701F0D2BAFDCE400EF65FA /* KosKitaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F0C2BAFDCE400EF65FA /* KosKitaApp.swift */; };
 		2E701F112BAFDCE600EF65FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E701F102BAFDCE600EF65FA /* Assets.xcassets */; };
 		2E701F142BAFDCE600EF65FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E701F132BAFDCE600EF65FA /* Preview Assets.xcassets */; };
@@ -31,9 +36,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		052D81B82BBD408300C8BB26 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		052D81BA2BBD40C500C8BB26 /* ExploreFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFilterView.swift; sourceTree = "<group>"; };
 		052D81BE2BBD410200C8BB26 /* ExploreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreListView.swift; sourceTree = "<group>"; };
+		054EB46C2BBDCDBF00DCC398 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		054EB46E2BBDD5EA00DCC398 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		054EB4702BBDDB5E00DCC398 /* SavedRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeView.swift; sourceTree = "<group>"; };
+		054EB4722BBDDE0A00DCC398 /* LeftRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftRadius.swift; sourceTree = "<group>"; };
+		054EB4742BBDDEB600DCC398 /* RightRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightRadius.swift; sourceTree = "<group>"; };
+		054EB4762BBE0C6700DCC398 /* SavedDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDeckView.swift; sourceTree = "<group>"; };
 		2E701F092BAFDCE400EF65FA /* KosKita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KosKita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E701F0C2BAFDCE400EF65FA /* KosKitaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KosKitaApp.swift; sourceTree = "<group>"; };
 		2E701F102BAFDCE600EF65FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,13 +117,14 @@
 			isa = PBXGroup;
 			children = (
 				2E701F1D2BAFDDE200EF65FA /* Components */,
+				2E701F352BB9193500EF65FA /* OnboardView.swift */,
 				2E701F242BAFE91E00EF65FA /* MainView.swift */,
 				2E701F332BB90F7A00EF65FA /* HomeView.swift */,
-				052D81B82BBD408300C8BB26 /* ExploreView.swift */,
+				054EB46C2BBDCDBF00DCC398 /* ExploreView.swift */,
 				2E7882492BBD228000C55DE6 /* DetailView.swift */,
 				2E701F392BBB87C100EF65FA /* ContentView.swift */,
+				054EB46E2BBDD5EA00DCC398 /* BookmarkView.swift */,
 				2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */,
-				2E701F352BB9193500EF65FA /* OnboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -146,6 +157,10 @@
 				2E701F372BBA816100EF65FA /* URLImageView.swift */,
 				052D81BA2BBD40C500C8BB26 /* ExploreFilterView.swift */,
 				052D81BE2BBD410200C8BB26 /* ExploreListView.swift */,
+				054EB4702BBDDB5E00DCC398 /* SavedRecipeView.swift */,
+				054EB4762BBE0C6700DCC398 /* SavedDeckView.swift */,
+				054EB4722BBDDE0A00DCC398 /* LeftRadius.swift */,
+				054EB4742BBDDEB600DCC398 /* RightRadius.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -221,11 +236,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E701F342BB90F7A00EF65FA /* HomeView.swift in Sources */,
+				054EB4712BBDDB5E00DCC398 /* SavedRecipeView.swift in Sources */,
 				2E701F212BAFE08800EF65FA /* RecipeViewModel.swift in Sources */,
+				054EB4772BBE0C6700DCC398 /* SavedDeckView.swift in Sources */,
 				2E701F3A2BBB87C100EF65FA /* ContentView.swift in Sources */,
 				2E701F3C2BBB883E00EF65FA /* CustomTabBar.swift in Sources */,
 				2E701F252BAFE91E00EF65FA /* MainView.swift in Sources */,
 				2E701F232BAFE65200EF65FA /* RecipeList.swift in Sources */,
+				054EB4752BBDDEB600DCC398 /* RightRadius.swift in Sources */,
+				054EB46F2BBDD5EA00DCC398 /* BookmarkView.swift in Sources */,
 				2E701F382BBA816100EF65FA /* URLImageView.swift in Sources */,
 				2E701F0D2BAFDCE400EF65FA /* KosKitaApp.swift in Sources */,
 				2E701F322BB3F06D00EF65FA /* DeckList.swift in Sources */,
@@ -233,11 +252,12 @@
 				2E701F362BB9193500EF65FA /* OnboardView.swift in Sources */,
 				2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */,
 				052D81BF2BBD410200C8BB26 /* ExploreListView.swift in Sources */,
-				052D81B92BBD408300C8BB26 /* ExploreView.swift in Sources */,
 				2E7882482BBD224F00C55DE6 /* URLYoutubeView.swift in Sources */,
 				052D81BB2BBD40C500C8BB26 /* ExploreFilterView.swift in Sources */,
 				2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */,
+				054EB4732BBDDE0A00DCC398 /* LeftRadius.swift in Sources */,
 				2E7882462BBBF6B800C55DE6 /* bookmarkDummy.swift in Sources */,
+				054EB46D2BBDCDBF00DCC398 /* ExploreView.swift in Sources */,
 				2E701F1F2BAFDE4C00EF65FA /* RecipeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
