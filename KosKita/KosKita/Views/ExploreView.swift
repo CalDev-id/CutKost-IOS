@@ -11,40 +11,14 @@ import SwiftUI
 struct ExploreView: View {
     
     @EnvironmentObject var recipeViewModel: RecipeViewModel
-//    var recipes: [RecipeViewModel]
     @EnvironmentObject var deckViewModel: DeckViewModel
     
     @State var searchField: String = ""
-    //@State var filteredRecipes: [RecipeModel] = []
     
     @State private var isFilterViewPresented = false
     @State private var highToLowSelected = true
     @State private var lowToHighSelected = false
     @State private var selectedDuration: Int = 0
-    
-//    var filteredRecipes: [RecipeModel] {
-//        var filtered = recipes
-//
-//        // Filter by search field
-//        if !searchField.isEmpty {
-//            filtered = filtered.filter { $0.title.range(of: searchField, options: .caseInsensitive) != nil }
-//        }
-//
-//        // Filter by duration
-//        if selectedDuration != 0 {
-//            filtered = filtered.filter { $0.time == selectedDuration }
-//        }
-//
-//        // Sort by price
-//        if highToLowSelected {
-//            filtered.sort { $0.price >= $1.price }
-//        } else if lowToHighSelected {
-//            filtered.sort { $0.price <= $1.price }
-//        }
-//
-//        return filtered
-//    }
-    
     
     var body: some View {
         ScrollView {
@@ -53,26 +27,27 @@ struct ExploreView: View {
                     ZStack {
                         Rectangle()
                             .foregroundColor(.clear)
-                            .frame(width: 279, height: 47)
+                            .frame(width: 317, height: 40)
                             .background(.white)
-                            .cornerRadius(10)
+                            .cornerRadius(12)
                             .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
                         
                         HStack(spacing: 0) {
                             Image(systemName: "magnifyingglass")
-                                .frame(width: 20, height: 20)
                                 .foregroundColor(Color(red: 0.69, green: 0.69, blue: 0.69))
+                                .padding(.leading, 24).padding(.trailing, 4).padding(.vertical, 12)
+                            
                             
                             TextField("Search your own recipe..", text: $searchField)
-                                .frame(width: 154, height: 16)
                                 .font(
                                     Font.custom("Inter", size: 13)
                                         .weight(.medium)
                                 )
                                 .foregroundColor(Color(red: 0.69, green: 0.69, blue: 0.69))
+                                .padding(.trailing, 12).padding(.vertical, 12)
                         }
+                        //.padding(.vertical, 12).padding(.horizontal, 12)
                     }
-                    .padding(.leading, 16).padding(.trailing, 14)
                     
                     // Filter Button
                     VStack(spacing: 0) {
@@ -91,59 +66,58 @@ struct ExploreView: View {
                             .presentationDragIndicator(.visible)
                     })
                 }
-                .padding(.top, 26).padding(.bottom, 32.02)
                 
                 Spacer()
                 
-                VStack(spacing: 0) {
-//                    LazyVGrid(columns: [GridItem(), GridItem()]) {
-//                        ForEach(recipeViewModel.items) { recipe in
-//                            ExploreListView(item: recipe)
-//                                .padding(.bottom, 20)
-//                            //                        }
-//                        }
-//                        .padding(.horizontal, 16)
-//                    }
-                    
-                    // Search & filter
-                    if searchField.isEmpty{
-                        LazyVGrid(columns: [GridItem(), GridItem()]) {
-                            ForEach(recipeViewModel.items) { recipe in
-                                ExploreListView(item: recipe)
-                                    .padding(.bottom, 20)
-                                //                        }
+                if !searchField.isEmpty {
+
+                    let filteredRecipes = recipeViewModel.items.filter { recipe in
+                        return recipe.title.range(of: searchField, options: .caseInsensitive) != nil
+                    }
+
+                    if !filteredRecipes.isEmpty {
+                        VStack(spacing: 0) {
+                            LazyVGrid(columns: [GridItem(), GridItem()]) {
+                                ForEach(Array(zip(filteredRecipes.indices, filteredRecipes)), id: \.1.id) { index, item in
+                                    NavigationLink(destination: DetailView(id: item.id)){
+                                        ExploreListView(item: item)
+                                            .padding(.bottom, 20)
+                                            .padding(.top, index < 2 ? 27 : 0)
+                                            .padding(.leading, index % 2 == 0 ? 16 : 4) // Add left padding to items in the left column
+                                            .padding(.trailing, index % 2 != 0 ? 16 : 4) // Add right padding to items in the right column
+                                    }.foregroundColor(.black)
+                                }
                             }
-                            .padding(.horizontal, 16)
                         }
 
-                    }else{
-                        ForEach(recipeViewModel.items.filter({$0.title.lowercased() == searchField.lowercased()})) { item in
-                            RecipeList(isDeck: false, item: item)
+                    } else {
+                        Text("Recipe not available")
+                          .font(
+                            Font.custom("Inter", size: 20)
+                              .weight(.bold)
+                          )
+                          .multilineTextAlignment(.center)
+                          .foregroundColor(Color(red: 0.53, green: 0.53, blue: 0.53))
+                          .padding(.bottom, 331)
+                    }
+
+                } else {
+                    VStack(spacing: 0){
+                        LazyVGrid(columns: [GridItem(), GridItem()]) {
+                            ForEach(Array(zip(recipeViewModel.items.indices, recipeViewModel.items)), id: \.1.id) { index, item in
+                                NavigationLink(destination: DetailView(id: item.id)){
+                                    ExploreListView(item: item)
+                                        .padding(.bottom, 20)
+                                        .padding(.top, index < 2 ? 27 : 0)
+                                        .padding(.leading, index % 2 == 0 ? 16 : 4) // Add left padding to items in the left column
+                                        .padding(.trailing, index % 2 != 0 ? 16 : 4) // Add right padding to items in the right column
+                                }.foregroundColor(.black)
+                            }
                         }
                     }
-                    
-//                    if !filteredRecipes.isEmpty {
-//                        VStack(spacing: 0) {
-//                            LazyVGrid(columns: [GridItem(), GridItem()]) {
-//                                ForEach(recipeViewModel) { recipe in
-//                                    ExploreListView(item: recipe)
-//                                        .padding(.bottom, 20)
-//                                }
-//                            }
-//                            .padding(.horizontal, 16)
-//                        }
-//                    } else {
-//                        Text("No recipe available!")
-//                          .font(
-//                            Font.custom("Inter", size: 20)
-//                              .weight(.bold)
-//                          )
-//                          .multilineTextAlignment(.center)
-//                          .foregroundColor(Color(red: 0.53, green: 0.53, blue: 0.53))
-//                          .padding(.bottom, 331)
-//                    }
                 }
             }
         }
+        .padding(.top, 12)
     }
 }
