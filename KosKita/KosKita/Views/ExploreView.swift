@@ -11,7 +11,7 @@ import SwiftUI
 struct ExploreView: View {
     
     @EnvironmentObject var recipeViewModel: RecipeViewModel
-    var recipes: [RecipeViewModel]
+//    var recipes: [RecipeViewModel]
     @EnvironmentObject var deckViewModel: DeckViewModel
     
     @State var searchField: String = ""
@@ -96,16 +96,31 @@ struct ExploreView: View {
                 Spacer()
                 
                 VStack(spacing: 0) {
-                    LazyVGrid(columns: [GridItem(), GridItem()]) {
-                        ForEach(recipeViewModel.items) { recipe in
-                            ExploreListView(item: recipe)
-                                .padding(.bottom, 20)
-                            //                        }
-                        }
-                        .padding(.horizontal, 16)
-                    }
+//                    LazyVGrid(columns: [GridItem(), GridItem()]) {
+//                        ForEach(recipeViewModel.items) { recipe in
+//                            ExploreListView(item: recipe)
+//                                .padding(.bottom, 20)
+//                            //                        }
+//                        }
+//                        .padding(.horizontal, 16)
+//                    }
                     
                     // Search & filter
+                    if searchField.isEmpty{
+                        LazyVGrid(columns: [GridItem(), GridItem()]) {
+                            ForEach(recipeViewModel.items) { recipe in
+                                ExploreListView(item: recipe)
+                                    .padding(.bottom, 20)
+                                //                        }
+                            }
+                            .padding(.horizontal, 16)
+                        }
+
+                    }else{
+                        ForEach(recipeViewModel.items.filter({$0.title.lowercased() == searchField.lowercased()})) { item in
+                            RecipeList(isDeck: false, item: item)
+                        }
+                    }
                     
 //                    if !filteredRecipes.isEmpty {
 //                        VStack(spacing: 0) {

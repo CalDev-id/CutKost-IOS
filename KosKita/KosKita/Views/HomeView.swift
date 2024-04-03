@@ -58,8 +58,8 @@ struct PersonalDeck: View {
                             HStack{
                                 Text("Your Budget is").font(.system(size: 20)).padding(.leading, 5)
                                 Spacer()
-                                Text(String(priceAmount))
-                                Text(String(item1))
+//                                Text(String(priceAmount))
+//                                Text(String(item1))
                             }
                             HStack {
                                 Text("Rp.")

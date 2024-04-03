@@ -11,6 +11,7 @@ import SwiftUI
 struct ExploreListView: View {
     
     let item: RecipeModel
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
     
     @State private var isButtonTapped = false
     
@@ -51,9 +52,9 @@ struct ExploreListView: View {
                     // Custom Button
                     CustomButton(buttonName: "bookmark", isTapped: $isButtonTapped) {
                         // Save Bookmark Logic???
-                        
+                        recipeViewModel.addBookmark(item: item)
+
                     }
-                    .padding(.trailing, 11.23)
                 }
                 .padding(.bottom, 7.14)
                     
