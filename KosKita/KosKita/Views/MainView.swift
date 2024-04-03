@@ -157,7 +157,7 @@ struct MainView: View {
                 if recipeViewModel.items.isEmpty {
                     Text("kosong")
                 } else {
-                    ForEach(deckViewModel.items) { item in
+                    ForEach(deckViewModel.items2) { item in
                         DeckList(deck: item)
                     }
                 }

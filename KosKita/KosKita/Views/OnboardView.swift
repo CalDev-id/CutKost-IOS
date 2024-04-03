@@ -11,7 +11,7 @@ struct OnboardView: View {
     var body: some View {
         ZStack{
             VStack{
-                Image("onboard").resizable().aspectRatio(contentMode: .fit)
+                Image("bgSplash2").resizable().aspectRatio(contentMode: .fill).padding(.top, 2)
                 Spacer()
             }
             
@@ -25,13 +25,12 @@ struct OnboardView: View {
                 Text("loremmmmmmmmmmmmmmmm")
                 Text("ipsummmmmmmmmmm")
                 
-                Text("-----").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold()
                 NavigationLink(destination: ContentView()){
-                    Text("Next").padding(.horizontal, 50).padding(.vertical, 7).foregroundColor(.orange).fontWeight(.semibold)
+                    Text("Get Started").padding(.horizontal, 50).padding(.vertical, 7).foregroundColor(.orange).fontWeight(.semibold)
                         .background(
                             .white
                         ).cornerRadius(20)
-                }.padding(.top, 100)
+                }.padding(.top, 150)
             }.foregroundColor(.white)
         }.edgesIgnoringSafeArea(.all)
     }

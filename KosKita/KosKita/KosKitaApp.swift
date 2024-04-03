@@ -16,6 +16,7 @@ struct KosKitaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView{
+//                DetailView(id: 1)
                 OnboardView()
             }
             .navigationViewStyle(StackNavigationViewStyle())

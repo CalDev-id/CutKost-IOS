@@ -59,6 +59,7 @@ struct PersonalDeck: View {
                                 Text("Your Budget is").font(.system(size: 20)).padding(.leading, 5)
                                 Spacer()
                                 Text(String(priceAmount))
+                                Text(String(item1))
                             }
                             HStack {
                                 Text("Rp.")
@@ -88,8 +89,16 @@ struct PersonalDeck: View {
                                 Image(systemName: "bookmark")
                                 Text("Save")
                             }.padding(6).padding(.horizontal, 8).background(.blueAsset).foregroundColor(.white).cornerRadius(20).onTapGesture {
-                                if item1 != 0 {
-                                    deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
+                                withAnimation(.linear) {
+                                    if priceAmount <= 1 {
+                                        alertTitle = "Select Food Before Save deck"
+                                        showAlert.toggle()
+                                    }
+                                    if item1 != 0 {
+                                        deckViewModel.addDeck(item1: item1, item2: item2, item3: item3)
+                                        alertTitle = "Item Saved"
+                                        showAlert.toggle()
+                                    }
                                 }
                             }
                         }
@@ -175,7 +184,11 @@ struct PersonalDeck: View {
             Image("noData").padding()
         }
         if let budget = Int(textFieldText), budget > 5000{
-                Group {
+                ZStack {
+                    VStack {
+                        Image("bgRecomen3")
+                        Spacer()
+                    }
                     VStack {
                         HStack{
                             Text("Recommended").bold().font(.title3).padding(.top)
@@ -184,8 +197,19 @@ struct PersonalDeck: View {
                         LazyVGrid(columns: gridItems, spacing: 20) {
                                 if let enteredPrice = Int(textFieldText) {
                                     ForEach(recipeViewModel.items.filter { $0.price <= enteredPrice }) { item in
-                                        RecipeList(isDeck: isDeck, item: item)
-                                            .onTapGesture {
+                                        ZStack {
+                                            NavigationLink(destination: DetailView(id: item.id)){
+                                                RecipeList(isDeck: isDeck, item: item)
+                                            }.foregroundColor(.black)
+//                                            RecipeList(isDeck: isDeck, item: item)
+                                            VStack{
+                                                Spacer()
+                                                HStack {
+                                                    Spacer()
+                                                    Image(item.isDeck ? "plusActive" : "plusInactive")
+                                                        .foregroundColor(item.isDeck ? .orangeAsset : .orangeAsset).padding(.bottom, 25).padding(.trailing, 15)
+                                                }
+                                            }.onTapGesture {
                                                 withAnimation(.linear) {
                                                     recipeViewModel.addDeck(item: item)
                                                     if item1 == 0 {
@@ -213,13 +237,14 @@ struct PersonalDeck: View {
                                                     }
                                                     
                                                 }
-                                            }
+                                        }
+                                        }
                                     }
                                 }
                             }
                         .padding(.horizontal, 10)
                     }.background(Blur(style: .systemThinMaterial).background(.secondary.opacity(0.2))).alert(isPresented: $showAlert, content: getAlert).cornerRadius(24).padding(.horizontal)
-                }.background(Image("bgRecomen3"))
+                }
             }
 
         }

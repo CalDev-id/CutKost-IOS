@@ -13,10 +13,10 @@ struct bookmarkDummy: View {
     
     var body: some View {
         VStack{
-            if deckViewModel.items.isEmpty {
+            if deckViewModel.items2.isEmpty {
                 Text("kosong")
             } else {
-                ForEach(deckViewModel.items) { item in
+                ForEach(deckViewModel.items2) { item in
                     DeckList(deck: item)
                 }
             }

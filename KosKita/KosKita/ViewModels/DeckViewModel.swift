@@ -8,7 +8,7 @@
 import Foundation
 
 class DeckViewModel: ObservableObject {
-    @Published var items: [DeckModel] = [] {
+    @Published var items2: [DeckModel] = [] {
         didSet {
             saveItem()
         }
@@ -25,7 +25,8 @@ class DeckViewModel: ObservableObject {
 //            hasBeenCalled = true
 //        }
         
-        
+//        initRecipe()
+
 //        if items.isEmpty {
 //            initRecipe()
 //        }
@@ -33,10 +34,10 @@ class DeckViewModel: ObservableObject {
     
     func initRecipe(){
         let newItems = [
-            DeckModel(item1: 1, item2: 2, item3: 3, isBookmarked: false)
+            DeckModel(item1: 1, item2: 1, item3: 1, isBookmarked: false)
         ]
         
-        items.append(contentsOf: newItems)
+        items2.append(contentsOf: newItems)
     }
     
     func getItems(){
@@ -47,7 +48,7 @@ class DeckViewModel: ObservableObject {
         else {return}
 //        guard let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data) else {return}
         
-        self.items = savedItems
+        self.items2 = savedItems
     }
 
 //    func addItem(){
@@ -55,18 +56,18 @@ class DeckViewModel: ObservableObject {
 //        items.append(newItem)
 //    }
     func addBookmark(item: DeckModel){
-        if let index = items.firstIndex(where: { $0.id == item.id}) {
-            items[index] = item.BookmarkDeck()
+        if let index = items2.firstIndex(where: { $0.id == item.id}) {
+            items2[index] = item.BookmarkDeck()
         }
     }
     //new
     func addDeck(item1: Int, item2: Int, item3: Int){
         let newItem = DeckModel(item1: item1, item2: item2, item3: item3, isBookmarked: false)
-        items.append(newItem)
+        items2.append(newItem)
     }
     
     func saveItem(){
-        if let encodedData = try? JSONEncoder().encode(items){
+        if let encodedData = try? JSONEncoder().encode(items2){
             UserDefaults.standard.set(encodedData, forKey: itemsKey)
         }
     }

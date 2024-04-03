@@ -18,16 +18,16 @@ struct RecipeList: View {
             HStack{
                 VStack(alignment: .leading){
                     HStack {
-                        Text(item.title).font(.system(size: 18)).bold()
-                        Image(systemName: item.isDeck ? "checkmark.circle.fill" : "checkmark.circle")
-                            .foregroundColor(item.isDeck ? .orangeAsset : .orangeAsset)
+                        Text(item.title).font(.system(size: 18)).bold().lineLimit(1)
                     }
                     HStack{
                         Text("Rp. \(item.price)").font(.system(size: 10)).foregroundColor(.white).padding(5).fontWeight(.semibold).background(.orangeAsset).cornerRadius(8)
                         Text("\(String(item.time)) Menit").font(.system(size: 10)).foregroundColor(.orangeAsset)
                     }
                 }
-            }.padding(.horizontal, 10).padding(.bottom, 10)
+                Image(item.isDeck ? "plusHidden" : "plusHidden")
+                    .foregroundColor(item.isDeck ? .white : .white)
+            }.padding(.horizontal, 10).padding(.vertical, 10).padding(.bottom, 5)
         }
         .font(.title2)
         .background(.white)

@@ -23,6 +23,8 @@
 		2E701F3A2BBB87C100EF65FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F392BBB87C100EF65FA /* ContentView.swift */; };
 		2E701F3C2BBB883E00EF65FA /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E701F3B2BBB883E00EF65FA /* CustomTabBar.swift */; };
 		2E7882462BBBF6B800C55DE6 /* bookmarkDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */; };
+		2E7882482BBD224F00C55DE6 /* URLYoutubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7882472BBD224F00C55DE6 /* URLYoutubeView.swift */; };
+		2E78824A2BBD228000C55DE6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7882492BBD228000C55DE6 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		2E701F392BBB87C100EF65FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E701F3B2BBB883E00EF65FA /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookmarkDummy.swift; sourceTree = "<group>"; };
+		2E7882472BBD224F00C55DE6 /* URLYoutubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLYoutubeView.swift; sourceTree = "<group>"; };
+		2E7882492BBD228000C55DE6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 				2E701F1D2BAFDDE200EF65FA /* Components */,
 				2E701F242BAFE91E00EF65FA /* MainView.swift */,
 				2E701F332BB90F7A00EF65FA /* HomeView.swift */,
+				2E7882492BBD228000C55DE6 /* DetailView.swift */,
 				2E701F392BBB87C100EF65FA /* ContentView.swift */,
 				2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */,
 				2E701F352BB9193500EF65FA /* OnboardView.swift */,
@@ -130,6 +135,7 @@
 				2E701F222BAFE65200EF65FA /* RecipeList.swift */,
 				2E701F312BB3F06D00EF65FA /* DeckList.swift */,
 				2E701F3B2BBB883E00EF65FA /* CustomTabBar.swift */,
+				2E7882472BBD224F00C55DE6 /* URLYoutubeView.swift */,
 				2E701F372BBA816100EF65FA /* URLImageView.swift */,
 			);
 			path = Components;
@@ -214,8 +220,10 @@
 				2E701F382BBA816100EF65FA /* URLImageView.swift in Sources */,
 				2E701F0D2BAFDCE400EF65FA /* KosKitaApp.swift in Sources */,
 				2E701F322BB3F06D00EF65FA /* DeckList.swift in Sources */,
+				2E78824A2BBD228000C55DE6 /* DetailView.swift in Sources */,
 				2E701F362BB9193500EF65FA /* OnboardView.swift in Sources */,
 				2E701F2E2BB3EAA400EF65FA /* DeckModel.swift in Sources */,
+				2E7882482BBD224F00C55DE6 /* URLYoutubeView.swift in Sources */,
 				2E701F302BB3ECD500EF65FA /* DeckViewModel.swift in Sources */,
 				2E7882462BBBF6B800C55DE6 /* bookmarkDummy.swift in Sources */,
 				2E701F1F2BAFDE4C00EF65FA /* RecipeModel.swift in Sources */,
