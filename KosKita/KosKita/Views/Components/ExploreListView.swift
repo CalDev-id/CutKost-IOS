@@ -100,7 +100,7 @@ struct ExploreListView: View {
                     .padding(.bottom, 13)
                     
                     VStack(spacing: 0) {
-                        CustomButton(buttonName: "bookmark", isTapped: $isButtonTapped) {
+                        AddBook(buttonName: "bookmark", isTapped: $isButtonTapped) {
                             // Save Bookmark Logic???
                             recipeViewModel.addBookmark(item: item)
 
@@ -115,7 +115,8 @@ struct ExploreListView: View {
     }
 }
 
-func CustomButton(buttonName: String, isTapped: Binding<Bool>, action: @escaping () -> Void) -> some View {
+
+func AddBook(buttonName: String, isTapped: Binding<Bool>, action: @escaping () -> Void) -> some View {
     Button(action: {
         // Toggle the state when the button is tapped
         isTapped.wrappedValue.toggle()
@@ -128,5 +129,3 @@ func CustomButton(buttonName: String, isTapped: Binding<Bool>, action: @escaping
             .foregroundColor(isTapped.wrappedValue ? .orangeAsset : .primary) // Change color to orange if tapped
     }
 }
-
-
