@@ -71,7 +71,12 @@ class DeckViewModel: ObservableObject {
             UserDefaults.standard.set(encodedData, forKey: itemsKey)
         }
     }
-    
+    func deleteItem(indexSet: IndexSet) {
+        items2.remove(atOffsets: indexSet)
+    }
+    func moveItem(from: IndexSet, to: Int){
+        items2.move(fromOffsets: from, toOffset: to)
+    }
     
 
 }

@@ -12,6 +12,8 @@ import SwiftUI
 struct SavedRecipeView:View {
     
     let item: RecipeModel
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
+
     
     var body: some View {
         Group {
@@ -43,10 +45,7 @@ struct SavedRecipeView:View {
                                     
                                     HStack(spacing: 0){
                                         Text(item.title)
-                                          .font(
-                                            Font.custom("SF Pro", size: 17)
-                                              .weight(.bold)
-                                          )
+                                            .bold()
                                           .padding(.top, 4)
                                           .foregroundColor(Color(red: 0.05, green: 0.05, blue: 0.05))
                                           .frame(maxWidth: 170, alignment: .leading)
@@ -75,6 +74,9 @@ struct SavedRecipeView:View {
                                         .cornerRadius(4)
                                     }
                                     .padding(.top, 8).padding(.trailing, 8)
+                                    .onTapGesture {
+                                        recipeViewModel.addBookmark(item: item)
+                                    }
                                 }
                                 
                                 HStack(spacing: 0) {

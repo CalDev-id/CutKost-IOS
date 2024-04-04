@@ -47,10 +47,7 @@ struct ExploreListView: View {
                         
                         HStack(spacing: 0) {
                             Text(item.title)
-                              .font(
-                                Font.custom("SF Pro", size: 13)
-                                  .weight(.bold)
-                              )
+                                .bold()
                               .foregroundColor(Color(red: 0.05, green: 0.05, blue: 0.05))
                               .frame(width: 113, height: 16, alignment: .leading)
                             
@@ -59,42 +56,14 @@ struct ExploreListView: View {
                         .padding(.bottom, 8)
                         .frame(alignment: .leading)
                         
-                        HStack(spacing: 0) {
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 56, height: 20)
-                                    .background(Color(red: 0.97, green: 0.47, blue: 0.18))
-                                    .cornerRadius(6)
-                                
-                                Text("Rp \(item.price)")
-                                    .font(
-                                      Font.custom("Inter", size: 6.6)
-                                        .weight(.semibold)
-                                    )
-                                    .foregroundColor(Color(red: 0.97, green: 0.97, blue: 0.97))
-                                    .frame(width: 50, height: 12, alignment: .center)
+                        HStack{
+                            HStack{
+                                Text("Rp. \(item.price)").font(.system(size: 10)).foregroundColor(.white).padding(5).fontWeight(.semibold).background(.orangeAsset).cornerRadius(8)
+                                Text("\(String(item.time)) Menit").font(.system(size: 10)).foregroundColor(.orangeAsset)
                             }
-                            .padding(.trailing, 4)
-                            
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 46, height: 20)
-                                    .background(Color(red: 0.97, green: 0.47, blue: 0.18))
-                                    .cornerRadius(6)
-                                
-                                Text("\(item.time) Menit")
-                                    .font(
-                                      Font.custom("Inter", size: 6.6)
-                                        .weight(.semibold)
-                                    )
-                                    .foregroundColor(Color(red: 0.97, green: 0.97, blue: 0.97))
-                                    .frame(width: 42, height: 12, alignment: .center)
-                            }
-                            
                             Spacer()
-                        }
+                        }.padding(.vertical, 5)
+
                     }
                     .frame(width: 139, height: 44, alignment: .leading)
                     .padding(.bottom, 13)

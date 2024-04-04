@@ -33,6 +33,7 @@
 		2E7882462BBBF6B800C55DE6 /* bookmarkDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */; };
 		2E7882482BBD224F00C55DE6 /* URLYoutubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7882472BBD224F00C55DE6 /* URLYoutubeView.swift */; };
 		2E78824A2BBD228000C55DE6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7882492BBD228000C55DE6 /* DetailView.swift */; };
+		2E78824C2BBE73E900C55DE6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E78824B2BBE73E900C55DE6 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookmarkDummy.swift; sourceTree = "<group>"; };
 		2E7882472BBD224F00C55DE6 /* URLYoutubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLYoutubeView.swift; sourceTree = "<group>"; };
 		2E7882492BBD228000C55DE6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		2E78824B2BBE73E900C55DE6 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				2E701F392BBB87C100EF65FA /* ContentView.swift */,
 				054EB46E2BBDD5EA00DCC398 /* BookmarkView.swift */,
 				2E7882452BBBF6B800C55DE6 /* bookmarkDummy.swift */,
+				2E78824B2BBE73E900C55DE6 /* Launch Screen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E78824C2BBE73E900C55DE6 /* Launch Screen.storyboard in Resources */,
 				2E701F142BAFDCE600EF65FA /* Preview Assets.xcassets in Resources */,
 				2E701F112BAFDCE600EF65FA /* Assets.xcassets in Resources */,
 			);
@@ -395,6 +399,7 @@
 				DEVELOPMENT_TEAM = C59QF2W8P6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CutKost;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -424,6 +429,7 @@
 				DEVELOPMENT_TEAM = C59QF2W8P6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CutKost;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -27,10 +27,7 @@ struct SavedDeckView: View {
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {
                             Text("Your personal deck")
-                                .font(
-                                    Font.custom("SF Pro", size: 15)
-                                        .weight(.bold)
-                                )
+                                .fontWeight(.semibold)
                             
                             Spacer()
                             
@@ -44,12 +41,12 @@ struct SavedDeckView: View {
                                         .padding(.trailing, 2)
                                     
                                     Text("Saved")
-                                        .font(Font.custom("SF Pro", size: 10))
+                                        .font(Font.custom("SF Pro", size: 14))
                                         .foregroundColor(Color(red: 0.97, green: 0.97, blue: 0.97))
                                         .frame(width: 29, alignment: .topLeading)
                                         .padding(.leading, 2)
                                 }
-                                .frame(width: 45, height: 12)
+                                .frame(width: 50, height: 15)
                                 .padding(4)
                                 .background(Color(red: 0.97, green: 0.47, blue: 0.18))
                                 .cornerRadius(4)
@@ -78,50 +75,34 @@ struct SavedDeckView: View {
                                     .padding(12)
                                 
                                 HStack(spacing: 0){
-//                                    ForEach(recipeViewModel.items.filter { $0.id == item.item1 }) { filteredItem in
-//                                        VStack{
-//                                            URLImageView(url: filteredItem.image)
-//                                                .frame(width: 96, height: 120) // Set the desired size
-//                                                .clipped() // Clip the image to the frame
-//                                                .cornerRadius(12) // Apply corner radius to match the rectangle
-//                                        }
-//                                        .padding(.leading, 12).padding(.vertical, 12)
-//                                    }
-                                    
-                                    ForEach(Array(zip(recipeViewModel.items.indices, recipeViewModel.items.filter { $0.id == item.item1 })), id: \.1.id) { index, item in
-                                        NavigationLink(destination: DetailView(id: item.id)){
-                                            VStack{
-                                                URLImageView(url: item.image)
-                                                    .frame(width: 96, height: 120) // Set the desired size
-                                                    .clipped() // Clip the image to the frame
-                                                    .cornerRadius(12) // Apply corner radius to match the rectangle
-                                            }
-                                            .padding(.leading, 12).padding(.vertical, 12)
-                                        }.foregroundColor(.black)
+                                    ForEach(recipeViewModel.items.filter { $0.id == item.item1 }) { filteredItem in
+                                        VStack{
+                                            URLImageView(url: filteredItem.image)
+                                                .frame(width: 96, height: 120) // Set the desired size
+                                                .clipped() // Clip the image to the frame
+                                                .cornerRadius(12) // Apply corner radius to match the rectangle
+                                        }
+                                        .padding(.leading, 12).padding(.vertical, 12)
                                     }
                                     
-                                    ForEach(Array(zip(recipeViewModel.items.indices, recipeViewModel.items.filter { $0.id == item.item2 })), id: \.1.id) { index, item in
-                                        NavigationLink(destination: DetailView(id: item.id)){
-                                            VStack{
-                                                URLImageView(url: item.image)
-                                                    .frame(width: 96, height: 120) // Set the desired size
-                                                    .clipped() // Clip the image to the frame
-                                                    .cornerRadius(12) // Apply corner radius to match the rectangle
-                                            }
-                                            .padding(.leading, 12).padding(.vertical, 12)
-                                        }.foregroundColor(.black)
+                                    ForEach(recipeViewModel.items.filter { $0.id == item.item2 }) { filteredItem in
+                                        VStack{
+                                            URLImageView(url: filteredItem.image)
+                                                .frame(width: 96, height: 120) // Set the desired size
+                                                .clipped() // Clip the image to the frame
+                                                .cornerRadius(12) // Apply corner radius to match the rectangle
+                                        }
+                                        .padding(.leading, 12).padding(.vertical, 12)
                                     }
                                     
-                                    ForEach(Array(zip(recipeViewModel.items.indices, recipeViewModel.items.filter { $0.id == item.item3 })), id: \.1.id) { index, item in
-                                        NavigationLink(destination: DetailView(id: item.id)){
-                                            VStack{
-                                                URLImageView(url: item.image)
-                                                    .frame(width: 96, height: 120) // Set the desired size
-                                                    .clipped() // Clip the image to the frame
-                                                    .cornerRadius(12) // Apply corner radius to match the rectangle
-                                            }
-                                            .padding(.leading, 12).padding(.vertical, 12)
-                                        }.foregroundColor(.black)
+                                    ForEach(recipeViewModel.items.filter { $0.id == item.item3 }) { filteredItem in
+                                        VStack{
+                                            URLImageView(url: filteredItem.image)
+                                                .frame(width: 96, height: 120) // Set the desired size
+                                                .clipped() // Clip the image to the frame
+                                                .cornerRadius(12) // Apply corner radius to match the rectangle
+                                        }
+                                        .padding(.leading, 12).padding(.vertical, 12)
                                     }
                                     
                                 }
@@ -131,6 +112,5 @@ struct SavedDeckView: View {
                 }
             }
         }
-        .padding(.bottom, 13)
     }
 }

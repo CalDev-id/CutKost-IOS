@@ -16,22 +16,23 @@ struct BookmarkView: View {
     @State var isBookmark:Bool = true
     
     var body: some View {
-        ScrollView {
+        VStack {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    Text("Saved Deck").padding().background(isBookmark ? .orangeAsset : .orangeLow).foregroundColor(isBookmark ? .white : .secondary).cornerRadius(30).frame(width: 162, height: 34).onTapGesture {
+                    Text("Saved Deck").font(.system(size: 16)).fontWeight(.semibold).padding(.horizontal, 24).padding(.vertical, 8).background(isBookmark ? .orangeAsset : .orangeLow).foregroundColor(isBookmark ? .white : .secondary).cornerRadius(30).onTapGesture {
                         isBookmark = true
                     }
-                    Text("Saved Recipe").padding().background(isBookmark ? .orangeLow : .orangeAsset).foregroundColor(isBookmark ? .secondary : .white).cornerRadius(30).frame(width: 162, height: 34).onTapGesture {
+                    Text("Saved Recipe").font(.system(size: 16)).fontWeight(.semibold).padding(.horizontal, 24).padding(.vertical, 8).background(isBookmark ? .orangeLow : .orangeAsset).foregroundColor(isBookmark ? .secondary : .white).cornerRadius(30).onTapGesture {
                         isBookmark = false
                     }
                 }
-                .frame(width: 337, height: 44)
-                .padding(12)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                .padding(.vertical, 8)
                 .background(Color(red: 1, green: 0.92, blue: 0.88))
                 .cornerRadius(30)
                 .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 4)
             }
+            .padding(.horizontal, 24)
             .padding(.bottom, 24)
 
             
@@ -47,36 +48,25 @@ struct BookmarkView: View {
                           .foregroundColor(Color(red: 0.53, green: 0.53, blue: 0.53))
                           .padding(.bottom, 331)
                     } else {
-                        ForEach(deckViewModel.items2) { item in
-                            SavedDeckView(item: item)
-                                .padding(.bottom, 12)
-                                .swipeActions(edge: .trailing) {
-                                    Button {
-                                        //                                recipeViewModel.addBookmark(item: item)
-                                        print("TES")
-                                    }label: {
-                                        Image(systemName: "trash")
-                                    }
-                                    .tint(.red)
-                                }
+                        List{
+                            ForEach(deckViewModel.items2) { item in
+                                SavedDeckView(item: item)
+                            }
+                            .onDelete(perform: deckViewModel.deleteItem)
+                            .onMove(perform: deckViewModel.moveItem)
                         }
+                        .listStyle(PlainListStyle())
                     }
                 }else{
-                    ForEach(recipeViewModel.items.filter({$0.isBookmarked})) { item in
-                        SavedRecipeView(item: item)
-                            .padding(.bottom, 12)
-                            .swipeActions(edge: .trailing) {
-                                Button {
-                                    //                                recipeViewModel.addBookmark(item: item)
-                                    print("TES")
-                                }label: {
-                                    Image(systemName: "trash")
-                                }
-                                .tint(.red)
-                            }
+                    List{
+                        ForEach(recipeViewModel.items.filter({$0.isBookmarked})) { item in
+                            NavigationLink(destination: DetailView(id: item.id)){
+                                SavedRecipeView(item: item)
+                            }.foregroundColor(.black)
+                        }
                     }
-                    .background(.white)
-                    .foregroundColor(.white)
+                    .listStyle(PlainListStyle())
+
                 }
             }
         }

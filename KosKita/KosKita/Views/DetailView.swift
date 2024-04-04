@@ -48,7 +48,7 @@ struct DetailView: View {
                                 Spacer()
                                 Text("250 gram")
                             }.padding().background(.thinMaterial).cornerRadius(20).onTapGesture{
-                                ingredientsCheck = true
+                                ingredientsCheck = !ingredientsCheck
                             }
                         }
                         Text("Bahan Bahan").bold().font(.system(size: 20)).opacity(0.7)
