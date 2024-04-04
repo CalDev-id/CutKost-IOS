@@ -111,16 +111,24 @@ struct PersonalDeck: View {
                                     }.frame(width: 105, height: 125).foregroundColor(.blueAsset).background(.secondary.opacity(0.2)).cornerRadius(20)
                                 } else {
                                     ForEach(recipeViewModel.items.filter { $0.id == item1 }) { filteredItem in
-                                        VStack {
-                                            URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
-//                                            Text(filteredItem.title)
-                                        }.onTapGesture{
+                                        ZStack {
+                                            VStack {
+                                                URLImageView(url: filteredItem.image).frame(width: 105, height: 125)
+    //                                            Text(filteredItem.title)
+                                            }
+                                            VStack{
+                                                Spacer()
+                                                Group {
+                                                    Text(filteredItem.title).foregroundColor(.white).padding(6).lineLimit(2).fontWeight(.semibold).font(.system(size: 15))
+                                                }.background(Color.black.opacity(0.5))
+                                            }
+                                        }.cornerRadius(20).onTapGesture{
                                             item1 = 0
                                             priceAmount = priceAmount - priceItem1
                                             isDeck = false
                                             recipeViewModel.delDeck(item: filteredItem)
                                             priceItem1 = 0
-                                        }
+                                    }
                                     }
                                 }
                             }
@@ -132,16 +140,24 @@ struct PersonalDeck: View {
                                     }.frame(width: 105, height: 125).foregroundColor(.blueAsset).background(.secondary.opacity(0.2)).cornerRadius(20)
                                 } else {
                                     ForEach(recipeViewModel.items.filter { $0.id == item2 }) { filteredItem in
-                                        VStack {
-                                            URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
-//                                            Text(filteredItem.title)
-                                        }.onTapGesture{
+                                        ZStack {
+                                            VStack {
+                                                URLImageView(url: filteredItem.image).frame(width: 105, height: 125)
+    //                                            Text(filteredItem.title)
+                                            }
+                                            VStack{
+                                                Spacer()
+                                                Group {
+                                                    Text(filteredItem.title).foregroundColor(.white).padding(6).lineLimit(2).fontWeight(.semibold).font(.system(size: 15))
+                                                }.background(Color.black.opacity(0.5))
+                                            }
+                                        }.cornerRadius(20).onTapGesture{
                                             item2 = 0
                                             priceAmount = priceAmount - priceItem2
                                             isDeck = false
                                             recipeViewModel.delDeck(item: filteredItem)
-                                            priceItem1 = 0
-                                        }
+                                            priceItem2 = 0
+                                    }
                                     }
                                 }
                             }
@@ -153,16 +169,24 @@ struct PersonalDeck: View {
                                     }.frame(width: 105, height: 125).foregroundColor(.blueAsset).background(.secondary.opacity(0.2)).cornerRadius(20)
                                 } else {
                                     ForEach(recipeViewModel.items.filter { $0.id == item3 }) { filteredItem in
-                                        VStack {
-                                            URLImageView(url: filteredItem.image).frame(width: 105, height: 125).cornerRadius(20)
-//                                            Text(filteredItem.title)
-                                        }.onTapGesture{
+                                        ZStack {
+                                            VStack {
+                                                URLImageView(url: filteredItem.image).frame(width: 105, height: 125)
+    //                                            Text(filteredItem.title)
+                                            }
+                                            VStack{
+                                                Spacer()
+                                                Group {
+                                                    Text(filteredItem.title).foregroundColor(.white).padding(6).lineLimit(2).fontWeight(.semibold).font(.system(size: 15))
+                                                }.background(Color.black.opacity(0.5)).frame(maxWidth:.infinity)
+                                            }
+                                        }.cornerRadius(20).onTapGesture{
                                             item3 = 0
                                             priceAmount = priceAmount - priceItem3
                                             isDeck = false
                                             recipeViewModel.delDeck(item: filteredItem)
-                                            priceItem1 = 0
-                                        }
+                                            priceItem3 = 0
+                                    }
                                     }
                                 }
                             }
@@ -243,16 +267,18 @@ struct PersonalDeck: View {
                                 }
                             }
                         .padding(.horizontal, 10)
-                    }.background(Blur(style: .systemThinMaterial).background(.secondary.opacity(0.2))).alert(isPresented: $showAlert, content: getAlert).cornerRadius(24).padding(.horizontal)
+                    }.background(Blur(style: .systemThinMaterial).background(.secondary.opacity(0.2))).alert(isPresented: $showAlert, content: getAlert).cornerRadius(24).padding(.horizontal).padding(.bottom, 50)
                 }
             }
 
         }
     func maxAmount() -> Bool {
-        if priceAmount >= (Int(textFieldText) ?? 0) {
-            alertTitle = "Maximal Amount reached!"
-            showAlert.toggle()
-            return false
+        if let textFieldValue = Int(textFieldText) {
+            if priceAmount >= (textFieldValue - 5000) {
+                alertTitle = "Maximal Amount reached!"
+                showAlert.toggle()
+                return false
+            }
         }
         return true
     }
